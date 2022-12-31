@@ -1,14 +1,19 @@
-﻿@model IEnumerable<DatabaseLayer.DoctorTable>
+﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
 
 @{
-    ViewBag.Title = "GetAllDoctors";
+    ViewBag.Title = "Completed Appointment";
 }
 
-<h2>GetAllDoctors</h2>
+<h2>Completed Appointment</h2>
+
+
+
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
+
+
         <input type="text" name="search" id="search" class="form-control col-md-3" style="float:right;" placeholder="Search Here" />
     </div>
     <div class="card-body">
@@ -17,88 +22,81 @@
                 <thead>
                     <tr>
 
+
                         <th>
-                            Doctor
+                            @Html.DisplayNameFor(model => model.DoctorTable.Name)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.DoctorTimeSlotTable.Name)
                         </th>
                         <th>
-                            Photo
+                            Patient Name
                         </th>
                         <th>
-                            Fees
+                            @Html.DisplayNameFor(model => model.AppointDate)
                         </th>
                         <th>
-                            Phone No
+                            @Html.DisplayNameFor(model => model.TransectionID)
                         </th>
                         <th>
-                            Email Adress
+                            @Html.DisplayNameFor(model => model.Description)
                         </th>
                         <th>
-                            Specialization
+                            @Html.DisplayNameFor(model => model.DoctorComment)
                         </th>
                         <th>
-                            Clinic Adress
+                            Status
                         </th>
-                        <th>
-                            Action
-                        </th>
+
+
 
                     </tr>
                 </thead>
-
                 <tbody id="searchvalue">
 
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Name)
+                                @Html.DisplayFor(modelItem => item.DoctorTable.Name)
                             </td>
                             <td>
-                                @{ if (!string.IsNullOrEmpty(item.Photo))
-                                    {
-                                        <img src="@Url.Content(item.Photo)" alt="Image" style="width:50px;height:50px;max-width:100%; height:auto;" />
-                                    }
-                               
-                                }
+                                @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Fees)
+                                @Html.DisplayFor(modelItem => item.PatientTable.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ClinicPhoneNo)
+                                @Html.DisplayFor(modelItem => item.AppointDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.EmailAddress)
+                                @Html.DisplayFor(modelItem => item.TransectionID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DoctorComment)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Splztion)
+                              
+                                        <h4 class="bold" style="color:green;">Completed</h4>
+                                   
+                                 
+                                
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ClinicAddress)
-                            </td>
 
 
 
-
-
-                            <td>
-                                @Html.ActionLink("Appointment", "DoctorAppointment", new { id = item.DoctorID }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Profile", "DoctorProfile", new { id = item.DoctorID }, new { @class = "btn btn-primary" })
-
-                            </td>
                         </tr>
                     }
                 </tbody>
-
             </table>
         </div>
     </div>
 </div>
-
-
-
-
 <script type="text/javascript">
     $(document).ready(function () {
         $("#searchtype").on("keyup", function () {

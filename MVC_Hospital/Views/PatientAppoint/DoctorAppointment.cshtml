@@ -34,8 +34,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DoctorTimeSlotID, "Select Time Slot", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+
+
                 @Html.DropDownList("DoctorTimeSlotID", null, "Time Slot", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DoctorTimeSlotID, "", new { @class = "text-danger" })
+                @*System.InvalidOperationException: 'The ViewData item that has the key 'DoctorTimeSlotID' is of type 'System.Data.Entity.Infrastructure.DbQuery`1[[DatabaseLayer.DoctorTimeSlotTable, DatabaseLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]' but must be of type 'IEnumerable<SelectListItem>
+                    '.' Hatasını aldıgımızda conttorllere new selected list ekledik*@
+                    @Html.ValidationMessageFor(model => model.DoctorTimeSlotID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -100,5 +104,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "GetAllDoctors")
 </div>
