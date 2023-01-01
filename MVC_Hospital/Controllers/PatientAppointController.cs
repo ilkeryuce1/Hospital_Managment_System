@@ -72,23 +72,29 @@ namespace MVC_Hospital.Controllers
             if (ModelState.IsValid)
             {
                 var check = db.DoctorAppointTables.Where(i => i.TransectionID == appointment.TransectionID).FirstOrDefault();
-                var find = db.DoctorAppointTables.Where(p => p.DoctorTimeSlotID == appointment.DoctorTimeSlotID && p.DoctorID == appointment.DoctorID && p.AppointDate == appointment.AppointDate).FirstOrDefault();
-                if (find == null)
+                if (check==null)
                 {
-                    db.DoctorAppointTables.Add(appointment);
-                    db.SaveChanges();
-                    return RedirectToAction("DoctorPendingAppoint");
+                    var find = db.DoctorAppointTables.Where(p => p.DoctorTimeSlotID == appointment.DoctorTimeSlotID && p.DoctorID == appointment.DoctorID && p.AppointDate == appointment.AppointDate).FirstOrDefault();
+                    if (find == null)
+                    {
+                        db.DoctorAppointTables.Add(appointment);
+                        db.SaveChanges();
+                        return RedirectToAction("DoctorPendingAppoint");
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Time Slot is Already Assign!(Another Pattient)";
+
+                    }
                 }
                 else
                 {
-                    ViewBag.Message = "Time Slot is Already Assign!(Another Pattient)";
-
+                    ViewBag.Message = "Transection Number is Already Used! for Another transection!";
                 }
+              
+
             }
-            else
-            {
-                ViewBag.Message = "Transection Number is Already Used! for Another transection!";
-            }
+           
             ViewBag.DoctorTimeSlotID = new SelectList(db.DoctorTimeSlotTables.Where(d => d.DoctorID == appointment.DoctorID && d.IsActive == true), "DoctorTimeSlotID", "Name", "0");
             return View();
 
@@ -101,18 +107,88 @@ namespace MVC_Hospital.Controllers
             return View();
         }
 
-        public ActionResult DoctorPendingAppoint() 
+        
+        public ActionResult LabTests(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
-            int userid = Convert.ToInt32(Convert.ToString(Session["UserID"]));
-            int pattientid=db.PatientTables.Where(i=>i.UserID== userid).FirstOrDefault().PatientID;
-            var apppointmentlist = db.DoctorAppointTables.Where(i => i.PatientID == pattientid && i.IsFeeSubmit == false && i.IsChecked == false);
+            Session["labid"] = id;
+        var laballtest=db.LabTestTables.Where(d=>d.LabID==id);
 
-            return View(apppointmentlist); 
+
+            return View(laballtest);
+
         }
-      
+        public ActionResult LabAppointment(int? id)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int labid = db.LabTestTables.Find(id).LabID;
+            var patient = (PatientTable)Session["Patient"];
+            Session["labid"] = id;
+
+            var appointment = new LabAppointTable()
+            //idleri bu sekilde kullandık
+            {
+                LabID = labid,
+                LabTestID = (int)id,
+                PatientID = patient.PatientID,
+                LabTimeSlotID= (int)id,
+
+            };
+            //ViewBag.LabTestID= new SelectList(db.LabTestTables.Where(d => d.LabID==id ), "LabTimeSlotID", "Name", "0");
+
+
+            ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == id && d.IsActive == true), "LabTimeSlotID", "Name", "0");
+
+            return View(appointment);
+
+        }
+        [HttpPost]
+        public ActionResult LabAppointment(LabAppointTable appointment)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            appointment.IsComplete = false;
+            appointment.IsFeeSubmit = false;
+            ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == appointment.LabID && d.IsActive == true), "LabTimeSlotID", "Name", "0");
+            if (ModelState.IsValid)
+            {
+                var check = db.LabAppointTables.Where(i => i.TransectionID == appointment.TransectionID).FirstOrDefault();
+                if (check == null)
+                {
+                    var find = db.LabAppointTables.Where(p => p.LabTimeSlotID == appointment.LabTimeSlotID && p.LabID == appointment.LabID && p.AppointDate == appointment.AppointDate).FirstOrDefault();
+                    if (find == null)
+                    {
+                        db.LabAppointTables.Add(appointment);
+                        db.SaveChanges();
+                        ViewBag.Message = "Appointment submitted Successfully!";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Time Slot is Already Assign!";
+
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "Transection Number is Already Used! ";
+                }
+
+
+            }
+
+            
+            return View(appointment);
+
+        }
+
     }
 }

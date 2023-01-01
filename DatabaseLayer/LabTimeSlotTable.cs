@@ -11,13 +11,21 @@ namespace DatabaseLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class LabTimeSlotTable
     {
         public int LabTimeSlotID { get; set; }
+        [Required(ErrorMessage ="*Required!")]
         public int LabID { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+
         public string Name { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+       
         public System.TimeSpan ToTime { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+     
         public System.TimeSpan FromTime { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
