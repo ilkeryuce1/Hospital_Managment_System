@@ -158,6 +158,7 @@ namespace MVC_Hospital.Controllers
             }
             appointment.IsComplete = false;
             appointment.IsFeeSubmit = false;
+            //Idyı dropdownlıste gondermek ıcın kullanılan alanda ufak bır hata duzeltme yaptım
             ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == appointment.LabID && d.IsActive == true), "LabTimeSlotID", "Name", "0");
             if (ModelState.IsValid)
             {
