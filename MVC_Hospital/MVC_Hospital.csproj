@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountTypeTablesController.cs" />
     <Compile Include="Controllers\DoctorAppointmentStatusController.cs" />
+    <Compile Include="Controllers\DoctorApproveController.cs" />
     <Compile Include="Controllers\DoctorTimeSlotTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LabAppointmentController.cs" />
@@ -621,6 +622,10 @@
     <Content Include="Views\LabAppointmentStatus\CompletedAppoint.cshtml" />
     <Content Include="Views\LabAppointmentStatus\AllAppoint.cshtml" />
     <Content Include="Views\LabAppointmentStatus\CancelAppoint.cshtml" />
+    <Content Include="Views\DoctorApprove\PendingAppoint.cshtml" />
+    <Content Include="Views\DoctorApprove\ChangeStatus.cshtml" />
+    <Content Include="Views\DoctorApprove\CurrentAppoint.cshtml" />
+    <Content Include="Views\DoctorApprove\ProcessAppointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -628,7 +633,6 @@
     <Folder Include="Content\LabPhotos\" />
     <Folder Include="Content\PatientPhotos\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\LabAppointment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

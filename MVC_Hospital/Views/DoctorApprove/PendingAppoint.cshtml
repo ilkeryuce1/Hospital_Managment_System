@@ -36,18 +36,20 @@
                             Patient Name
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.AppointDate)
+                            Appointment Date
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TransectionID)
+                            Transecction No
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Description)
+                            Description
                         </th>
                         <th>
                             Status
                         </th>
-
+                        <th>
+                            Actions
+                        </th>
 
 
                     </tr>
@@ -78,14 +80,11 @@
 
                             <td>
 
-                                <h4 class="bold" style="color:blue;">Pending</h4>
+                                <h4 class="bold" style="color:green;">Pending</h4>
 
 
                             </td>
-                            <td>
-                                @Html.ActionLink("Change Status", "ChangeStatus", new { id = item.DoctorAppointID }, new { @class = "btn btn-primary" })
 
-                            </td>
 
 
                         </tr>
