@@ -46,8 +46,6 @@ namespace DatabaseLayer
         [Required(ErrorMessage = "*Required!")]
 
         public string PermanentAddress { get; set; }
-
-        [Required(ErrorMessage = "*Required!")]
         public string AboutLab { get; set; }
         public int AccountTypeID { get; set; }
         public string AccountNo { get; set; }
