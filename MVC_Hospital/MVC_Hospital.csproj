@@ -626,6 +626,8 @@
     <Content Include="Views\DoctorApprove\ChangeStatus.cshtml" />
     <Content Include="Views\DoctorApprove\CurrentAppoint.cshtml" />
     <Content Include="Views\DoctorApprove\ProcessAppointment.cshtml" />
+    <Content Include="Views\DoctorApprove\AllAppoint.cshtml" />
+    <Content Include="Views\DoctorApprove\CompleteAppointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

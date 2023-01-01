@@ -20,11 +20,21 @@ namespace MVC_Hospital.Controllers
 
             }
             var doc = (DoctorTable)Session["Doctor"];
-            var pendingappointment = db.DoctorAppointTables.Where(d => d.DoctorID == doc.DoctorID && d.IsChecked == false && d.IsFeeSubmit == false && d.DoctorComment.Trim().Length == 0);
+            var pendingappointment = db.DoctorAppointTables.Where(d => d.DoctorID == doc.DoctorID && d.IsChecked == false && d.IsFeeSubmit == false && string.IsNullOrEmpty(d.DoctorComment) == true);
             return View(pendingappointment);
         }
+        public ActionResult CompleteAppointment()//**
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
 
-        public ActionResult PendingAppoint()
+            }
+            var doc = (DoctorTable)Session["Doctor"];
+            var pendingappointment = db.DoctorAppointTables.Where(d => d.DoctorID == doc.DoctorID && d.IsChecked == true && d.IsFeeSubmit == true && string.IsNullOrEmpty(d.DoctorComment) != true);
+            return View(pendingappointment);
+        }
+        public ActionResult AllAppoint()//**
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
@@ -43,6 +53,7 @@ namespace MVC_Hospital.Controllers
 
             }
             var appoint = db.DoctorAppointTables.Find(id);
+            ViewBag.DoctorTimeSlotID=new SelectList( db.DoctorTimeSlotTables.Where(d=>d.DoctorID==appoint.DoctorID), "DoctorTimeSlotID","Name",appoint.DoctorTimeSlotID);
             return View(appoint);
         }
         [HttpPost]
@@ -55,11 +66,14 @@ namespace MVC_Hospital.Controllers
             }
             if (ModelState.IsValid)
             {
+               
                 db.Entry(app).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("PendingAppoint");
 
             }
+            ViewBag.DoctorTimeSlotID = new SelectList(db.DoctorTimeSlotTables.Where(d => d.DoctorID == app.DoctorID), "DoctorTimeSlotID", "DoctorTimeSlotID",app.DoctorTimeSlotID);
+
             return View(app);
         }
         public ActionResult CurrentAppoint()
@@ -70,7 +84,7 @@ namespace MVC_Hospital.Controllers
 
             }
             var doc = (DoctorTable)Session["Doctor"];
-            var currentappointment = db.DoctorAppointTables.Where(d => d.DoctorID == doc.DoctorID && d.IsChecked == false && d.IsFeeSubmit == true && d.DoctorComment.Trim().Length == 0);
+            var currentappointment = db.DoctorAppointTables.Where(d => d.DoctorID == doc.DoctorID && d.IsChecked == false && d.IsFeeSubmit == true && string.IsNullOrEmpty(d.DoctorComment) == true);
             return View(currentappointment);
         }
         public ActionResult ProcessAppointment(int? id)
@@ -82,6 +96,8 @@ namespace MVC_Hospital.Controllers
             }
 
             var appoint = db.DoctorAppointTables.Find(id);
+
+
             return View(appoint);
         }
 

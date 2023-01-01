@@ -1,11 +1,11 @@
-﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
+﻿
+@model IEnumerable<DatabaseLayer.DoctorAppointTable>
 
 @{
-    ViewBag.Title = "Pending Appointment";
+    ViewBag.Title = "All Appointment";
 }
 
-<h2>Pending Appointment</h2>
-
+<h2>All Appoint</h2>
 
 
 
@@ -78,11 +78,33 @@
 
                             <td>
 
-                                <h4 class="bold" style="color:blue;">Pending</h4>
+                                @{ if (item.IsChecked == true && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+                                    {
+
+                                        <h4 class="bold" style="color:forestgreen;">Complete</h4>
+
+                                    }
+                                    else if (item.IsChecked == false && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+                                    {
+                                        <h4 class="bold" style="color:red;">Cancel</h4>
+
+                                    }
+                                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length == 0)
+                                    {
+                                        <h4 class="bold" style="color:cadetblue;">Pending</h4>
+
+                                    }
+                                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length > 0)
+                                    {
+                                        <h4 class="bold" style="color:red;">Reject</h4>
+
+                                    }
+
+                                }
 
 
                             </td>
-                           
+                       
 
 
                         </tr>
@@ -102,4 +124,5 @@
         });
     });
 </script>
+
 

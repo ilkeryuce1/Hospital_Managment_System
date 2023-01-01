@@ -83,13 +83,15 @@
                         else if (value == 2)
                         {
                             //Doctor User Access
-                            <li>@Html.ActionLink("Current Appointment ", "CurrentAppointment", "LabAppointment", null, null)</li>
                             <li>@Html.ActionLink("Time Slots     ", "Index", "DoctorTimeSlotTables", null, null)</li>
-                            <li>@Html.ActionLink("Pending Appointment ", "PendingAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Cancel Appointment ", "CancelAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Complete Appointment ", "CompleteAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("All Appointment ", "AllAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Current Appointment ", "CurrentAppoint", "DoctorApprove", null, null)</li>
+
+                            <li>@Html.ActionLink("Pending Appointment ", "PendingAppoint", "DoctorApprove", null, null)</li>
+                            <li>@Html.ActionLink("Complete Appointment ", "CompleteAppointment", "DoctorApprove", null, null)</li>
+                            <li>@Html.ActionLink("All Appointment ", "AllAppoint", "DoctorApprove", null, null)</li>
+
+
+                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "DoctorApprove", null, null)</li>
 
                         }
                         else if (value == 3)
