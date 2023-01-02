@@ -25,7 +25,10 @@ namespace DatabaseLayer
         public int LabTestID { get; set; }
         public int PatientID { get; set; }
         public int LabID { get; set; }
+
         public int LabTimeSlotID { get; set; }
+        [Required(ErrorMessage = "*Required")]
+
         [DataType(DataType.Date)]
         public System.DateTime AppointDate { get; set; }
         public bool IsFeeSubmit { get; set; }

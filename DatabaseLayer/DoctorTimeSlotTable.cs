@@ -11,7 +11,8 @@ namespace DatabaseLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DoctorTimeSlotTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,11 @@ namespace DatabaseLayer
         public int DoctorTimeSlotID { get; set; }
         public int DoctorID { get; set; }
         public string Name { get; set; }
+        [Required(ErrorMessage = "*Required")]
+        [DataType(DataType.Time)]
         public System.TimeSpan ToTime { get; set; }
+        [Required(ErrorMessage = "*Required")]
+        [DataType(DataType.Time)]
         public System.TimeSpan FromTime { get; set; }
         public bool IsActive { get; set; }
     

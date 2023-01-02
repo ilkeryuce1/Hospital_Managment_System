@@ -11,13 +11,22 @@ namespace DatabaseLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DoctorAppointTable
     {
         public int DoctorAppointID { get; set; }
+        [Required(ErrorMessage = "*Required")]
+
         public int DoctorID { get; set; }
+        [Required(ErrorMessage = "*Required")]
+
         public int PatientID { get; set; }
+        [Required(ErrorMessage = "*Required")]
+
         public int DoctorTimeSlotID { get; set; }
+        [Required(ErrorMessage = "*Required")]
+        [DataType(DataType.Date)]
         public System.DateTime AppointDate { get; set; }
         public string Description { get; set; }
         public bool IsFeeSubmit { get; set; }

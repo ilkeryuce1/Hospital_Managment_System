@@ -28,9 +28,11 @@ namespace DatabaseLayer
         public int UserID { get; set; }
 
         public string Name { get; set; }
-
+        [Required(ErrorMessage = "*Required")]
+        [DataType(DataType.PhoneNumber)]
         public string ContactNo { get; set; }
-
+        [Required(ErrorMessage = "*Required")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Description { get; set; }
 

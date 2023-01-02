@@ -31,10 +31,18 @@ namespace DatabaseLayer
         [Required(ErrorMessage = "*Required!")]
         [DataType(DataType.PhoneNumber)]
         public string ContactNo { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+
         public double Fees { get; set; }
         public string Splztion { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+
         public string ClinicAddress { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+
         public string PermanentAddress { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
         [Required(ErrorMessage ="*Required!")]
         [DataType(DataType.PhoneNumber)]

@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/LoginTemplate/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/LoginTemplate/css/main.css">
     <!--===============================================================================================-->
+    <link href="~/Content/a.css" rel="stylesheet" />
 </head>
 <body style="background-color: #666666;">
 
@@ -52,7 +53,7 @@
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="email" id="email">
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Email</span>
+                        <span class="label-input100">Identity Number</span>
                     </div>
 
 
@@ -77,35 +78,36 @@
                         </div>
                     </div>
 
+                  
+                        <div class="container-login100-form-btn">
+                                                 <input type="submit" class="login100-form-btn" value="Login" />
 
-                    <div class="container-login100-form-btn">
 
-                        <input type="submit" class="login100-form-btn" value="Login" />
+                        </div>
+                        
+                        <div class="text-center p-t-46 p-b-20">
+                            <span class="txt2">
+
+                                or @Html.ActionLink("Create Account", "CreateUser", "Home")
+                            </span>
+                        </div>
+
+                        @*<div class="login100-form-social flex-c-m">
+                    <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                        <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </div>*@
+                        }
+
+                        <div class="login100-more"
+                             style="background-image: url('../../Content/LoginTemplate/images/bg-01.jpg');">
+                        </div>
                     </div>
-
-                    <div class="text-center p-t-46 p-b-20">
-                        <span class="txt2">
-
-                            or @Html.ActionLink("Create Account","CreateUser", "Home")
-                        </span>
-                    </div>
-
-                    @*<div class="login100-form-social flex-c-m">
-                            <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-                                <i class="fa fa-facebook-f" aria-hidden="true"></i>
-                            </a>
-
-                            <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                        </div>*@
-                }
-
-                <div class="login100-more"
-                     style="background-image: url('../../Content/LoginTemplate/images/bg-01.jpg');">
                 </div>
-            </div>
-        </div>
     </div>
 
 
@@ -127,6 +129,18 @@
     <script src="~/Content/LoginTemplate/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="~/Content/LoginTemplate/js/main.js"></script>
+    <script>
+        const inputs = document.querySelectorAll('.form-control input');
+        const labels = document.querySelectorAll('.form-control label');
 
+        labels.forEach(label => {
+            label.innerHTML = label.innerText
+                .split('')
+                .map((letter, idx) => `<span style="
+				transition-delay: ${idx * 50}ms
+			">${letter}</span>`)
+                .join('');
+        });
+    </script>
 </body>
 </html>

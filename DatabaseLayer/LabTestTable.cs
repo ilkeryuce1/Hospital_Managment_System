@@ -11,7 +11,8 @@ namespace DatabaseLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class LabTestTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,8 @@ namespace DatabaseLayer
     
         public int LabTestID { get; set; }
         public int LabID { get; set; }
+        [Required(ErrorMessage = "*Required")]
+
         public string Name { get; set; }
         public double Cost { get; set; }
     
