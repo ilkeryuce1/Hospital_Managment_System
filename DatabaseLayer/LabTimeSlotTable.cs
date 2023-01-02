@@ -15,6 +15,12 @@ namespace DatabaseLayer
 
     public partial class LabTimeSlotTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LabTimeSlotTable()
+        {
+            this.LabAppointTables = new HashSet<LabAppointTable>();
+        }
+    
         public int LabTimeSlotID { get; set; }
         [Required(ErrorMessage ="*Required!")]
         public int LabID { get; set; }
@@ -22,13 +28,15 @@ namespace DatabaseLayer
 
         public string Name { get; set; }
         [Required(ErrorMessage = "*Required!")]
-       
+        [DataType(DataType.Time)]
         public System.TimeSpan ToTime { get; set; }
         [Required(ErrorMessage = "*Required!")]
-     
+        [DataType(DataType.Time)]
         public System.TimeSpan FromTime { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LabAppointTable> LabAppointTables { get; set; }
         public virtual LabTable LabTable { get; set; }
     }
 }

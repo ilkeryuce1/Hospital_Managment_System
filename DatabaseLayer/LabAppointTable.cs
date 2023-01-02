@@ -12,7 +12,7 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class LabAppointTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -35,6 +35,7 @@ namespace DatabaseLayer
     
         public virtual LabTable LabTable { get; set; }
         public virtual LabTestTable LabTestTable { get; set; }
+        public virtual LabTimeSlotTable LabTimeSlotTable { get; set; }
         public virtual PatientTable PatientTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientTestDetailTable> PatientTestDetailTables { get; set; }

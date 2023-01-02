@@ -11,6 +11,7 @@ namespace DatabaseLayer
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
 
@@ -25,13 +26,18 @@ namespace DatabaseLayer
     
         public int DoctorID { get; set; }
         public int UserID { get; set; }
+        [Required(ErrorMessage = "*Required!")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+        [DataType(DataType.PhoneNumber)]
         public string ContactNo { get; set; }
         public double Fees { get; set; }
         public string Splztion { get; set; }
         public string ClinicAddress { get; set; }
         public string PermanentAddress { get; set; }
         public string EmailAddress { get; set; }
+        [Required(ErrorMessage ="*Required!")]
+        [DataType(DataType.PhoneNumber)]
         public string ClinicPhoneNo { get; set; }
         public string Description { get; set; }
         public Nullable<int> PerDayMaxAppitmnt { get; set; }
@@ -41,7 +47,7 @@ namespace DatabaseLayer
         public int GenderID { get; set; }
         [NotMapped]
         public HttpPostedFileBase LogFile { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoctorAppointTable> DoctorAppointTables { get; set; }
         public virtual GenderTable GenderTable { get; set; }

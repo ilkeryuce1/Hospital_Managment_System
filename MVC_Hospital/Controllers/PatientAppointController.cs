@@ -54,7 +54,47 @@ namespace MVC_Hospital.Controllers
             return View();
 
         }
+        [HttpPost]
+        public ActionResult LabAppointment(LabAppointTable appointment)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            appointment.IsComplete = false;
+            appointment.IsFeeSubmit = false;
+            //Idyı dropdownlıste gondermek ıcın kullanılan alanda ufak bır hata duzeltme yaptım
+            ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == appointment.LabID && d.IsActive == true), "LabTimeSlotID", "Name", "0");
+            if (ModelState.IsValid)
+            {
+                var check = db.LabAppointTables.Where(i => i.TransectionID == appointment.TransectionID).FirstOrDefault();
+                if (check == null)
+                {
+                    var find = db.LabAppointTables.Where(p => p.LabTimeSlotID == appointment.LabTimeSlotID && p.LabID == appointment.LabID && p.AppointDate == appointment.AppointDate).FirstOrDefault();
+                    if (find == null)
+                    {
+                        db.LabAppointTables.Add(appointment);
+                        db.SaveChanges();
+                        ViewBag.Message = "Appointment submitted Successfully!";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Time Slot is Already Assign!";
 
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "Transection Number is Already Used! ";
+                }
+
+
+            }
+
+
+            return View(appointment);
+
+        }
 
         [HttpPost]
         public ActionResult DoctorAppointment(DoctorAppointTable appointment)
@@ -68,6 +108,8 @@ namespace MVC_Hospital.Controllers
             appointment.IsFeeSubmit = false;
             var patient = (PatientTable)Session["Patient"];
             appointment.PatientID = patient.PatientID;
+            ViewBag.DoctorTimeSlotID = new SelectList(db.DoctorTimeSlotTables.Where(d => d.DoctorID == appointment.DoctorID && d.IsActive == true), "DoctorTimeSlotID", "Name", "0");
+
             appointment.DoctorID = int.Parse(Convert.ToString(Session["id"]));
             if (ModelState.IsValid)
             {
@@ -79,7 +121,9 @@ namespace MVC_Hospital.Controllers
                     {
                         db.DoctorAppointTables.Add(appointment);
                         db.SaveChanges();
-                        return RedirectToAction("DoctorPendingAppoint");
+                        //return RedirectToAction("DoctorPendingAppoint");
+                        ViewBag.Message = "Appointment submitted Successfully!";
+
                     }
                     else
                     {
@@ -95,8 +139,10 @@ namespace MVC_Hospital.Controllers
 
             }
            
-            ViewBag.DoctorTimeSlotID = new SelectList(db.DoctorTimeSlotTables.Where(d => d.DoctorID == appointment.DoctorID && d.IsActive == true), "DoctorTimeSlotID", "Name", "0");
-            return View();
+            return View(appointment);
+
+
+     
 
         }
 
@@ -149,47 +195,7 @@ namespace MVC_Hospital.Controllers
             return View(appointment);
 
         }
-        [HttpPost]
-        public ActionResult LabAppointment(LabAppointTable appointment)
-        {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            appointment.IsComplete = false;
-            appointment.IsFeeSubmit = false;
-            //Idyı dropdownlıste gondermek ıcın kullanılan alanda ufak bır hata duzeltme yaptım
-            ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == appointment.LabID && d.IsActive == true), "LabTimeSlotID", "Name", "0");
-            if (ModelState.IsValid)
-            {
-                var check = db.LabAppointTables.Where(i => i.TransectionID == appointment.TransectionID).FirstOrDefault();
-                if (check == null)
-                {
-                    var find = db.LabAppointTables.Where(p => p.LabTimeSlotID == appointment.LabTimeSlotID && p.LabID == appointment.LabID && p.AppointDate == appointment.AppointDate).FirstOrDefault();
-                    if (find == null)
-                    {
-                        db.LabAppointTables.Add(appointment);
-                        db.SaveChanges();
-                        ViewBag.Message = "Appointment submitted Successfully!";
-                    }
-                    else
-                    {
-                        ViewBag.Message = "Time Slot is Already Assign!";
-
-                    }
-                }
-                else
-                {
-                    ViewBag.Message = "Transection Number is Already Used! ";
-                }
-
-
-            }
-
-            
-            return View(appointment);
-
-        }
+      
 
     }
 }

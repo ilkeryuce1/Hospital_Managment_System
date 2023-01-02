@@ -56,6 +56,10 @@
       <End Role="LabTestTable" EntitySet="LabTestTables" />
       <End Role="LabAppointTable" EntitySet="LabAppointTables" />
     </AssociationSet>
+    <AssociationSet Name="FK_LabAppointTable_LabTimeSlotTable" Association="Mvc_HospitalModel.FK_LabAppointTable_LabTimeSlotTable">
+      <End Role="LabTimeSlotTable" EntitySet="LabTimeSlotTables" />
+      <End Role="LabAppointTable" EntitySet="LabAppointTables" />
+    </AssociationSet>
     <AssociationSet Name="FK_LabAppointTable_PatientTable" Association="Mvc_HospitalModel.FK_LabAppointTable_PatientTable">
       <End Role="PatientTable" EntitySet="PatientTables" />
       <End Role="LabAppointTable" EntitySet="LabAppointTables" />
@@ -182,6 +186,7 @@
     <Property Name="TransectionID" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="LabTable" Relationship="Mvc_HospitalModel.FK_LabAppointTable_LabTable" FromRole="LabAppointTable" ToRole="LabTable" />
     <NavigationProperty Name="LabTestTable" Relationship="Mvc_HospitalModel.FK_LabAppointTable_LabTestTable" FromRole="LabAppointTable" ToRole="LabTestTable" />
+    <NavigationProperty Name="LabTimeSlotTable" Relationship="Mvc_HospitalModel.FK_LabAppointTable_LabTimeSlotTable" FromRole="LabAppointTable" ToRole="LabTimeSlotTable" />
     <NavigationProperty Name="PatientTable" Relationship="Mvc_HospitalModel.FK_LabAppointTable_PatientTable" FromRole="LabAppointTable" ToRole="PatientTable" />
     <NavigationProperty Name="PatientTestDetailTables" Relationship="Mvc_HospitalModel.FK_PatientTestDetailTable_LabAppointTable" FromRole="LabAppointTable" ToRole="PatientTestDetailTable" />
   </EntityType>
@@ -243,6 +248,7 @@
     <Property Name="ToTime" Type="Time" Nullable="false" Precision="7" />
     <Property Name="FromTime" Type="Time" Nullable="false" Precision="7" />
     <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="LabAppointTables" Relationship="Mvc_HospitalModel.FK_LabAppointTable_LabTimeSlotTable" FromRole="LabTimeSlotTable" ToRole="LabAppointTable" />
     <NavigationProperty Name="LabTable" Relationship="Mvc_HospitalModel.FK_LabTimeSlotTable_LabTable" FromRole="LabTimeSlotTable" ToRole="LabTable" />
   </EntityType>
   <EntityType Name="PatientTable">
@@ -423,6 +429,18 @@
       </Principal>
       <Dependent Role="LabAppointTable">
         <PropertyRef Name="LabTestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabAppointTable_LabTimeSlotTable">
+    <End Type="Mvc_HospitalModel.LabTimeSlotTable" Role="LabTimeSlotTable" Multiplicity="1" />
+    <End Type="Mvc_HospitalModel.LabAppointTable" Role="LabAppointTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabTimeSlotTable">
+        <PropertyRef Name="LabTimeSlotID" />
+      </Principal>
+      <Dependent Role="LabAppointTable">
+        <PropertyRef Name="LabTimeSlotID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -14,7 +14,7 @@ namespace DatabaseLayer
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
-
+    
     public partial class PatientTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,13 +32,12 @@ namespace DatabaseLayer
         public string ContactNo { get; set; }
 
         public string Email { get; set; }
-
         public string Description { get; set; }
 
         public string Photo { get; set; }
 
         public int GenderID { get; set; }
-
+    
 
         [NotMapped]
         public HttpPostedFileBase LogFile { get; set; }

@@ -132,8 +132,8 @@
     <Compile Include="Controllers\DoctorApproveController.cs" />
     <Compile Include="Controllers\DoctorTimeSlotTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LabAppointmentController.cs" />
     <Compile Include="Controllers\LabAppointmentStatusController.cs" />
+    <Compile Include="Controllers\LabApproveController.cs" />
     <Compile Include="Controllers\LabSettingController.cs" />
     <Compile Include="Controllers\LabTimeSlotTablesController.cs" />
     <Compile Include="Controllers\PatientAppointController.cs" />
@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PatientAppointmentReportMV.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -628,13 +629,20 @@
     <Content Include="Views\DoctorApprove\ProcessAppointment.cshtml" />
     <Content Include="Views\DoctorApprove\AllAppoint.cshtml" />
     <Content Include="Views\DoctorApprove\CompleteAppointment.cshtml" />
+    <Content Include="Views\LabApprove\ChangeStatus.cshtml" />
+    <Content Include="Views\LabApprove\PendingAppoint.cshtml" />
+    <Content Include="Views\LabApprove\CompleteAppointment.cshtml" />
+    <Content Include="Views\LabApprove\CurrentAppoint.cshtml" />
+    <Content Include="Views\LabApprove\AllAppoint.cshtml" />
+    <Content Include="Views\LabApprove\ProccessAppointment.cshtml" />
+    <Content Include="Views\LabApprove\ViewDetails.cshtml" />
+    <Content Include="Views\LabSetting\GetAllTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\DoctorImages\" />
     <Folder Include="Content\LabPhotos\" />
     <Folder Include="Content\PatientPhotos\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

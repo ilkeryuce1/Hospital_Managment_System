@@ -11,12 +11,18 @@ namespace DatabaseLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PatientTestDetailTable
     {
         public int LabAppointDetailID { get; set; }
+        [Required(ErrorMessage ="*Required!")]
         public int LabAppointID { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+
         public int LabTestDetailID { get; set; }
+        [Required(ErrorMessage = "*Required!")]
+
         public int PatientValue { get; set; }
     
         public virtual LabAppointTable LabAppointTable { get; set; }

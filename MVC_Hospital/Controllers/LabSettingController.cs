@@ -32,6 +32,18 @@ namespace MVC_Hospital.Controllers
 
             var textlist = db.LabTestTables.Where(l => l.LabID == lab.LabID).ToList();
             return View(textlist);
+        }  
+        public ActionResult GetAllTest()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        
+          
+
+            var textlist = db.LabTestTables.ToList();
+            return View(textlist);
         }
         public ActionResult AddTest()
         {

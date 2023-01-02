@@ -91,7 +91,6 @@
                             <li>@Html.ActionLink("All Appointment ", "AllAppoint", "DoctorApprove", null, null)</li>
 
 
-                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "DoctorApprove", null, null)</li>
 
                         }
                         else if (value == 3)
@@ -101,12 +100,11 @@
                             <li>@Html.ActionLink("All Test", "LabAllTest", "LabSetting", null, null)</li>
 
                             <li>@Html.ActionLink("Add Test", "AddTest", "LabSetting", null, null)</li>
-                            <li>@Html.ActionLink("Current Appointment ", "CurrentAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Pending Appointment ", "PendingAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Cancel Appointment ", "CancelAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Complete Appointment ", "CompleteAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("All Appointment ", "AllAppointment", "LabAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Current Appointment ", "CurrentAppoint", "LabApprove", null, null)</li>
+                            <li>@Html.ActionLink("Pending Appointment ", "PendingAppoint", "LabApprove", null, null)</li>
+                           
+                            <li>@Html.ActionLink("Complete Appointment ", "CompleteAppointment", "LabApprove", null, null)</li>
+                            <li>@Html.ActionLink("All Appointment ", "AllAppoint", "LabApprove", null, null)</li>
 
                         }
                         else if (value == 4)
@@ -114,6 +112,7 @@
                             //Patient User Access
                             <li>@Html.ActionLink("All Lab", "GetAllLabs", "PatientAppoint", null, null)</li>
                             <li>@Html.ActionLink("All Doctors", "GetAllDoctors", "PatientAppoint", null, null)</li>
+                            <li>@Html.ActionLink("All Test", "GetAllTest", "LabSetting", null, null)</li>
 
 
 
@@ -122,7 +121,6 @@
                             <li>@Html.ActionLink("Cancel (Lab) Appointment ", "CancelAppoint", "LabAppointmentStatus", null, null)</li>
                             <li>@Html.ActionLink("Complete (Lab) Appointment ", "CompletedAppoint", "LabAppointmentStatus", null, null)</li>
                             <li>@Html.ActionLink("All (Lab) Appointment ", "AllAppoint", "LabAppointmentStatus", null, null)</li>
-                            <li>@Html.ActionLink("Appointment (Lab) Report", "AppointmentReport", "LabAppointmentStatus", null, null)</li>
 
 
 
@@ -131,7 +129,6 @@
                             <li>@Html.ActionLink("Current (Doctor) Appointment ", "CurrentAppoint", "DoctorAppointmentStatus", null, null)</li>
                             <li>@Html.ActionLink("Cancel (Doctor) Appointment ", "CancelAppoint", "DoctorAppointmentStatus", null, null)</li>
                             <li>@Html.ActionLink("Complete (Doctor) Appointment ", "CompletedAppoint", "DoctorAppointmentStatus", null, null)</li>
-                            <li>@Html.ActionLink("Appointment (Doctor) Report", "AppointmentReport", "DoctorAppointmentStatus", null, null)</li>
 
                         }
                     }

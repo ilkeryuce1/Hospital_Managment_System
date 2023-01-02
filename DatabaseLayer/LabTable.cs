@@ -49,11 +49,9 @@ namespace DatabaseLayer
         public string AboutLab { get; set; }
         public int AccountTypeID { get; set; }
         public string AccountNo { get; set; }
-
-
         [NotMapped]
         public HttpPostedFileBase LogFile { get; set; }
-
+        
         public virtual AccountTypeTable AccountTypeTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LabAppointTable> LabAppointTables { get; set; }
