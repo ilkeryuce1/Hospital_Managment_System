@@ -1,206 +1,179 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-
-* {
-    box-sizing: border-box;
+html {
+    height: 100%;
 }
-
 
 body {
-    font-family: 'Muli', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100vh;
     margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
 }
 
-.form-control {
-    position: relative;
-    margin: 20px 0;
-    width: 300px;
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
-    .form-control input {
-        border: 0;
-        border-bottom: 2px solid #333;
-        padding: 15px 0;
-        display: block;
-        font-size: 18px;
-        font-family: 'Muli', sans-serif;
-        width: 100%;
-        transition: 0.1s ease-in;
-    }
-
-        .form-control input:focus,
-        .form-control input:valid {
-            border-bottom-color: darksalmon;
-            outline: none;
-        }
-
-            .form-control input:focus + label span,
-            .form-control input:valid + label span {
-                color: darksalmon;
-                transform: translateY(-30px);
-            }
-
-    .form-control label {
-        position: absolute;
-        top: 15px;
-        left: 0;
-    }
-
-        .form-control label span {
-            display: inline-block;
-            font-size: 18px;
-            min-width: 5px;
-            transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-
-
-
-
-
-
-/* SOCIAL PANEL CSS */
-.social-panel-container {
-    position: fixed;
-    right: 0;
-    bottom: 80px;
-    transform: translateX(100%);
-    transition: transform 0.4s ease-in-out;
-}
-
-    .social-panel-container.visible {
-        transform: translateX(-10px);
-    }
-
-.social-panel {
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 16px 31px -17px rgba(0,31,97,0.6);
-    border: 5px solid #001F61;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Muli';
-    position: relative;
-    height: 169px;
-    width: 370px;
-    max-width: calc(100% - 10px);
-}
-
-    .social-panel button.close-btn {
-        border: 0;
-        color: #97A5CE;
-        cursor: pointer;
-        font-size: 20px;
-        position: absolute;
-        top: 5px;
-        right: 5px;
-    }
-
-        .social-panel button.close-btn:focus {
-            outline: none;
-        }
-
-    .social-panel p {
-        background-color: #001F61;
-        border-radius: 0 0 10px 10px;
-        color: #fff;
-        font-size: 14px;
-        line-height: 18px;
-        padding: 2px 17px 6px;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        margin: 0;
-        transform: translateX(-50%);
-        text-align: center;
-        width: 235px;
-    }
-
-        .social-panel p i {
-            margin: 0 5px;
-        }
-
-        .social-panel p a {
-            color: #FF7500;
-            text-decoration: none;
-        }
-
-    .social-panel h4 {
-        margin: 20px 0;
-        color: #97A5CE;
-        font-family: 'Muli';
-        font-size: 14px;
-        line-height: 18px;
-        text-transform: uppercase;
-    }
-
-    .social-panel ul {
-        display: flex;
-        list-style-type: none;
+    .login-box h2 {
+        margin: 0 0 30px;
         padding: 0;
-        margin: 0;
+        color: #fff;
+        text-align: center;
     }
 
-        .social-panel ul li {
-            margin: 0 10px;
+    .login-box .user-box {
+        position: relative;
+    }
+
+        .login-box .user-box input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background: transparent;
         }
 
-            .social-panel ul li a {
-                border: 1px solid #DCE1F2;
-                border-radius: 50%;
-                color: #001F61;
-                font-size: 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 50px;
-                width: 50px;
-                text-decoration: none;
-            }
+        .login-box .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: .5s;
+        }
 
-                .social-panel ul li a:hover {
-                    border-color: #FF6A00;
-                    box-shadow: 0 9px 12px -9px #FF6A00;
-                }
+        .login-box .user-box input:focus ~ label,
+        .login-box .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+        }
 
-.floating-btn {
-    border-radius: 26.5px;
-    background-color: #001F61;
-    border: 1px solid #001F61;
-    box-shadow: 0 16px 22px -17px #03153B;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 20px;
-    padding: 12px 20px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
+    .login-box form button {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: upercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px
+    }
+
+    .login-box button:hover {
+        background: #03e9f4;
+        color: gray;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+    }
+
+    .login-box button span {
+        position: absolute;
+        display: block;
+    }
+
+        .login-box button span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: btn-anim1 1s linear infinite;
+        }
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,100% {
+        left: 100%;
+    }
 }
 
-    .floating-btn:hover {
-        background-color: #ffffff;
-        color: #001F61;
+.login-box button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
     }
 
-    .floating-btn:focus {
-        outline: none;
+    50%,100% {
+        top: 100%;
+    }
+}
+
+.ortala {
+    text-align: center;
+}
+
+.login-box button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
     }
 
-@media screen and (max-width: 480px) {
+    50%,100% {
+        right: 100%;
+    }
+}
 
-    .social-panel-container.visible {
-        transform: translateX(0px);
+button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.login-box button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
     }
 
-    .floating-btn {
-        right: 10px;
+    50%,100% {
+        bottom: 100%;
     }
 }

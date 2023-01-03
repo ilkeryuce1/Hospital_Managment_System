@@ -401,6 +401,7 @@
     <Content Include="Content\LoginTemplate\vendor\select2\select2.js" />
     <Content Include="Content\LoginTemplate\vendor\select2\select2.min.css" />
     <Content Include="Content\LoginTemplate\vendor\select2\select2.min.js" />
+    <Content Include="Content\newacc.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

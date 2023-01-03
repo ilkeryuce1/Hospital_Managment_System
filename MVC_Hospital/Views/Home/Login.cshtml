@@ -7,6 +7,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .isp {
+            padding: 12px 10px;
+            border: 0;
+            background: #34e89e; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #0f3443, #34e89e); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #0f3443,#34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            border-radius: 3px;
+            margin-top: 10px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-family: 'Rubik', sans-serif;
+            text-align: center;
+            text-decoration: none;
+            width: 450px;
+        }
+
+     
+    </style>
     <title>Online Hospital Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,59 +51,58 @@
     <link rel="stylesheet" type="text/css" href="~/Content/LoginTemplate/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/LoginTemplate/css/main.css">
     <!--===============================================================================================-->
-    <link href="~/Content/a.css" rel="stylesheet" />
 </head>
-<body style="background-color: #666666;">
+<body>
 
+    <div class="xsa">
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login100-form validate-form" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login100-form validate-form" }))
-                {
-                    @Html.AntiForgeryToken()
+                        <span class="login100-form-title p-b-43" style="font-family:sans-serif;">
+                            Login to Continue
+                        </span>
 
-                    <span class="login100-form-title p-b-43">
-                        Login to continue
-                    </span>
-
-                    <p class="text-danger">  @ViewBag.message </p>
-                    <p class="text-success">   @ViewBag.Messag</p>
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" id="email">
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Identity Number</span>
-                    </div>
-
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="password">
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Password</span>
-                    </div>
-
-                    <div class="flex-sb-m w-full p-t-3 p-b-32">
-                        <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox100" for="ckb1">
-                                Remember me
-                            </label>
+                        <p class="text-danger">  @ViewBag.message </p>
+                        <p class="text-success">   @ViewBag.Messag</p>
+                        <div class="wrap-input100 ">
+                            <input class="input100" type="number" name="email" id="email" maxlength="11" pattern="\d{11}" required="">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Identity Number</span>
                         </div>
 
-                        <div>
-                            <a href="~/Content/LoginTemplate/#" class="txt1">
-                                Forgot Password?
-                            </a>
-                        </div>
-                    </div>
 
-                  
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <input class="input100" type="password" name="password" id="password">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Password</span>
+                        </div>
+
+                        <div class="flex-sb-m w-full p-t-3 p-b-32">
+                            <div class="contact100-form-checkbox">
+                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                <label class="label-checkbox100" for="ckb1">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <div>
+                                <a href="~/Content/LoginTemplate/#" class="txt1">
+                                    Forgot Password?
+                                </a>
+                            </div>
+                        </div>
+
+
                         <div class="container-login100-form-btn">
-                                                 <input type="submit" class="login100-form-btn" value="Login" />
+                            <input type="submit" class="isp" value="Login" />
 
 
                         </div>
-                        
+
                         <div class="text-center p-t-46 p-b-20">
                             <span class="txt2">
 
@@ -93,25 +111,25 @@
                         </div>
 
                         @*<div class="login100-form-social flex-c-m">
-                    <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-                        <i class="fa fa-facebook-f" aria-hidden="true"></i>
-                    </a>
+                            <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                                <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                            </a>
 
-                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </a>
-                </div>*@
-                        }
+                            <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>*@
+                    }
 
-                        <div class="login100-more"
-                             style="background-image: url('../../Content/LoginTemplate/images/bg-01.jpg');">
-                        </div>
+                    <div class="login100-more"
+                         style="background-image: url('../../Content/LoginTemplate/images/bg-01.jpg');">
                     </div>
                 </div>
+            </div>
+        </div>
+
+
     </div>
-
-
-
 
     <!--===============================================================================================-->
     <script src="~/Content/LoginTemplate/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -129,18 +147,6 @@
     <script src="~/Content/LoginTemplate/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="~/Content/LoginTemplate/js/main.js"></script>
-    <script>
-        const inputs = document.querySelectorAll('.form-control input');
-        const labels = document.querySelectorAll('.form-control label');
 
-        labels.forEach(label => {
-            label.innerHTML = label.innerText
-                .split('')
-                .map((letter, idx) => `<span style="
-				transition-delay: ${idx * 50}ms
-			">${letter}</span>`)
-                .join('');
-        });
-    </script>
 </body>
 </html>
