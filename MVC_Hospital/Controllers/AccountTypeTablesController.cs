@@ -17,7 +17,7 @@ namespace MVC_Hospital.Controllers
         // GET: AccountTypeTables
         public ActionResult Index()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -28,7 +28,7 @@ namespace MVC_Hospital.Controllers
         public ActionResult Details(int? id)
         {
           
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -47,7 +47,7 @@ namespace MVC_Hospital.Controllers
         // GET: AccountTypeTables/Create
         public ActionResult Create()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -61,7 +61,7 @@ namespace MVC_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccountTypeID,Name")] AccountTypeTable accountTypeTable)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -78,7 +78,7 @@ namespace MVC_Hospital.Controllers
         // GET: AccountTypeTables/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -101,7 +101,7 @@ namespace MVC_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AccountTypeID,Name")] AccountTypeTable accountTypeTable)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -117,7 +117,7 @@ namespace MVC_Hospital.Controllers
         // GET: AccountTypeTables/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -138,7 +138,7 @@ namespace MVC_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }

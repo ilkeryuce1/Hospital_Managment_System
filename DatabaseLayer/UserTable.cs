@@ -20,6 +20,7 @@ namespace DatabaseLayer
         {
             this.DoctorTables = new HashSet<DoctorTable>();
             this.LabTables = new HashSet<LabTable>();
+            this.PatientTables = new HashSet<PatientTable>();
         }
     
         public int UserID { get; set; }
@@ -41,6 +42,8 @@ namespace DatabaseLayer
         public virtual ICollection<DoctorTable> DoctorTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LabTable> LabTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatientTable> PatientTables { get; set; }
         public virtual UserTypeTable UserTypeTable { get; set; }
     }
 }

@@ -143,11 +143,8 @@ namespace MVC_Hospital.Controllers
 
         [HttpPost]
         public ActionResult EditTest(LabTestTable test)
-        {//14D 4.18
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
-            {
-                return RedirectToAction("Login", "Home");
-            }
+        {
+          
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");

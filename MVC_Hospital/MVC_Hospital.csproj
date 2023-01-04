@@ -639,6 +639,7 @@
     <Content Include="Views\LabApprove\ProccessAppointment.cshtml" />
     <Content Include="Views\LabApprove\ViewDetails.cshtml" />
     <Content Include="Views\LabSetting\GetAllTest.cshtml" />
+    <Content Include="Views\PatientAppoint\GetAllPatients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

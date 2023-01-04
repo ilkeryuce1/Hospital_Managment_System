@@ -92,10 +92,44 @@
       <End Role="LabTestDetailsTable" EntitySet="LabTestDetailsTables" />
       <End Role="PatientTestDetailTable" EntitySet="PatientTestDetailTables" />
     </AssociationSet>
+    <AssociationSet Name="FK_PatientTable_UserTable" Association="Mvc_HospitalModel.FK_PatientTable_UserTable">
+      <End Role="UserTable" EntitySet="UserTables" />
+      <End Role="PatientTable" EntitySet="PatientTables" />
+    </AssociationSet>
     <AssociationSet Name="FK_UserTable_UserTypeTable" Association="Mvc_HospitalModel.FK_UserTable_UserTypeTable">
       <End Role="UserTypeTable" EntitySet="UserTypeTables" />
       <End Role="UserTable" EntitySet="UserTables" />
     </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Mvc_HospitalModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Mvc_HospitalModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <EntityType Name="AccountTypeTable">
     <Key>
@@ -266,6 +300,7 @@
     <NavigationProperty Name="DoctorAppointTables" Relationship="Mvc_HospitalModel.FK_DoctorAppointTable_PatientTable" FromRole="PatientTable" ToRole="DoctorAppointTable" />
     <NavigationProperty Name="GenderTable" Relationship="Mvc_HospitalModel.FK_PatientTable_GenderTable" FromRole="PatientTable" ToRole="GenderTable" />
     <NavigationProperty Name="LabAppointTables" Relationship="Mvc_HospitalModel.FK_LabAppointTable_PatientTable" FromRole="PatientTable" ToRole="LabAppointTable" />
+    <NavigationProperty Name="UserTable" Relationship="Mvc_HospitalModel.FK_PatientTable_UserTable" FromRole="PatientTable" ToRole="UserTable" />
   </EntityType>
   <EntityType Name="PatientTestDetailTable">
     <Key>
@@ -302,6 +337,7 @@
     <Property Name="IsVerifed" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DoctorTables" Relationship="Mvc_HospitalModel.FK_DoctorTable_UserTable" FromRole="UserTable" ToRole="DoctorTable" />
     <NavigationProperty Name="LabTables" Relationship="Mvc_HospitalModel.FK_LabTable_UserTable" FromRole="UserTable" ToRole="LabTable" />
+    <NavigationProperty Name="PatientTables" Relationship="Mvc_HospitalModel.FK_PatientTable_UserTable" FromRole="UserTable" ToRole="PatientTable" />
     <NavigationProperty Name="UserTypeTable" Relationship="Mvc_HospitalModel.FK_UserTable_UserTypeTable" FromRole="UserTable" ToRole="UserTypeTable" />
   </EntityType>
   <EntityType Name="UserTypeTable">
@@ -540,6 +576,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PatientTable_UserTable">
+    <End Type="Mvc_HospitalModel.UserTable" Role="UserTable" Multiplicity="1" />
+    <End Type="Mvc_HospitalModel.PatientTable" Role="PatientTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PatientTable">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserTable_UserTypeTable">
     <End Type="Mvc_HospitalModel.UserTypeTable" Role="UserTypeTable" Multiplicity="1" />
     <End Type="Mvc_HospitalModel.UserTable" Role="UserTable" Multiplicity="*" />
@@ -552,4 +600,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

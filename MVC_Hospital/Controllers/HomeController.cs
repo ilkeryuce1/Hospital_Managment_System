@@ -72,6 +72,11 @@ namespace MVC_Hospital.Controllers
 
 
                 }
+                else if(user.UserTypeID == 1)
+                {
+                    var admın=db.UserTables.Where(a=>a.UserID== user.UserID).FirstOrDefault();
+                    Session["accesstolog"] = admın;
+                }
                 return RedirectToAction("Index");
 
             }
@@ -425,7 +430,7 @@ namespace MVC_Hospital.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPatient(PatientTable patient, ViewDataDictionary viewData)
+        public ActionResult AddPatient(PatientTable patient)
         {
             if (Session["User"] != null)
             {

@@ -17,7 +17,7 @@ namespace MVC_Hospital.Controllers
         // GET: UserTables 
         public ActionResult Index()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -28,7 +28,7 @@ namespace MVC_Hospital.Controllers
         // GET: UserTables/Details/5
         public ActionResult Details(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -47,7 +47,7 @@ namespace MVC_Hospital.Controllers
         // GET: UserTables/Create
         public ActionResult Create()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -62,7 +62,7 @@ namespace MVC_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,UserTypeID,UserName,Password,Email,ContactNo,Description,IsVerifed")] UserTable userTable)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -80,7 +80,7 @@ namespace MVC_Hospital.Controllers
         // GET: UserTables/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -104,7 +104,7 @@ namespace MVC_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,UserTypeID,UserName,Password,Email,ContactNo,Description,IsVerifed")] UserTable userTable)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -121,7 +121,7 @@ namespace MVC_Hospital.Controllers
         // GET: UserTables/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -142,7 +142,7 @@ namespace MVC_Hospital.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
             {
                 return RedirectToAction("Login", "Home");
             }

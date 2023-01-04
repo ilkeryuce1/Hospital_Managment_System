@@ -384,6 +384,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PatientTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="PatientTable" Type="Self.PatientTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PatientTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PatientTestDetailTable_LabAppointTable">
           <End Role="LabAppointTable" Type="Self.LabAppointTable" Multiplicity="1" />
           <End Role="PatientTestDetailTable" Type="Self.PatientTestDetailTable" Multiplicity="*" />
@@ -420,6 +432,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Mvc_HospitalModelStoreContainer">
           <EntitySet Name="AccountTypeTable" EntityType="Self.AccountTypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorAppointTable" EntityType="Self.DoctorAppointTable" Schema="dbo" store:Type="Tables" />
@@ -502,6 +545,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PatientTable_GenderTable" Association="Self.FK_PatientTable_GenderTable">
             <End Role="GenderTable" EntitySet="GenderTable" />
+            <End Role="PatientTable" EntitySet="PatientTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientTable_UserTable" Association="Self.FK_PatientTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
             <End Role="PatientTable" EntitySet="PatientTable" />
           </AssociationSet>
           <AssociationSet Name="FK_PatientTestDetailTable_LabAppointTable" Association="Self.FK_PatientTestDetailTable_LabAppointTable">
@@ -613,10 +660,44 @@
             <End Role="LabTestDetailsTable" EntitySet="LabTestDetailsTables" />
             <End Role="PatientTestDetailTable" EntitySet="PatientTestDetailTables" />
           </AssociationSet>
+          <AssociationSet Name="FK_PatientTable_UserTable" Association="Mvc_HospitalModel.FK_PatientTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="PatientTable" EntitySet="PatientTables" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserTable_UserTypeTable" Association="Mvc_HospitalModel.FK_UserTable_UserTypeTable">
             <End Role="UserTypeTable" EntitySet="UserTypeTables" />
             <End Role="UserTable" EntitySet="UserTables" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Mvc_HospitalModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Mvc_HospitalModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <EntityType Name="AccountTypeTable">
           <Key>
@@ -787,6 +868,7 @@
           <NavigationProperty Name="DoctorAppointTables" Relationship="Mvc_HospitalModel.FK_DoctorAppointTable_PatientTable" FromRole="PatientTable" ToRole="DoctorAppointTable" />
           <NavigationProperty Name="GenderTable" Relationship="Mvc_HospitalModel.FK_PatientTable_GenderTable" FromRole="PatientTable" ToRole="GenderTable" />
           <NavigationProperty Name="LabAppointTables" Relationship="Mvc_HospitalModel.FK_LabAppointTable_PatientTable" FromRole="PatientTable" ToRole="LabAppointTable" />
+          <NavigationProperty Name="UserTable" Relationship="Mvc_HospitalModel.FK_PatientTable_UserTable" FromRole="PatientTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="PatientTestDetailTable">
           <Key>
@@ -823,6 +905,7 @@
           <Property Name="IsVerifed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DoctorTables" Relationship="Mvc_HospitalModel.FK_DoctorTable_UserTable" FromRole="UserTable" ToRole="DoctorTable" />
           <NavigationProperty Name="LabTables" Relationship="Mvc_HospitalModel.FK_LabTable_UserTable" FromRole="UserTable" ToRole="LabTable" />
+          <NavigationProperty Name="PatientTables" Relationship="Mvc_HospitalModel.FK_PatientTable_UserTable" FromRole="UserTable" ToRole="PatientTable" />
           <NavigationProperty Name="UserTypeTable" Relationship="Mvc_HospitalModel.FK_UserTable_UserTypeTable" FromRole="UserTable" ToRole="UserTypeTable" />
         </EntityType>
         <EntityType Name="UserTypeTable">
@@ -1061,6 +1144,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PatientTable_UserTable">
+          <End Type="Mvc_HospitalModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="Mvc_HospitalModel.PatientTable" Role="PatientTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PatientTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserTable_UserTypeTable">
           <End Type="Mvc_HospitalModel.UserTypeTable" Role="UserTypeTable" Multiplicity="1" />
           <End Type="Mvc_HospitalModel.UserTable" Role="UserTable" Multiplicity="*" />
@@ -1073,6 +1168,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1269,6 +1375,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Mvc_HospitalModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Mvc_HospitalModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Mvc_HospitalModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Mvc_HospitalModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Mvc_HospitalModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Mvc_HospitalModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Mvc_HospitalModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Mvc_HospitalModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Mvc_HospitalModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

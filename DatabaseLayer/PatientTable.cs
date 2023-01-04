@@ -14,7 +14,7 @@ namespace DatabaseLayer
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
-    
+
     public partial class PatientTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,10 +23,9 @@ namespace DatabaseLayer
             this.DoctorAppointTables = new HashSet<DoctorAppointTable>();
             this.LabAppointTables = new HashSet<LabAppointTable>();
         }
-    
+     
         public int PatientID { get; set; }
         public int UserID { get; set; }
-
         public string Name { get; set; }
         [Required(ErrorMessage = "*Required")]
         [DataType(DataType.PhoneNumber)]
@@ -35,11 +34,9 @@ namespace DatabaseLayer
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Description { get; set; }
-
         public string Photo { get; set; }
-
         public int GenderID { get; set; }
-    
+
 
         [NotMapped]
         public HttpPostedFileBase LogFile { get; set; }
@@ -49,5 +46,6 @@ namespace DatabaseLayer
         public virtual GenderTable GenderTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LabAppointTable> LabAppointTables { get; set; }
+        public virtual UserTable UserTable { get; set; }
     }
 }

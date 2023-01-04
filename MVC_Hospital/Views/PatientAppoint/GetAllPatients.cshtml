@@ -1,0 +1,105 @@
+﻿@model IEnumerable<DatabaseLayer.PatientTable>
+
+@{
+    ViewBag.Title = "All Patients";
+}
+
+<h2>All Patients</h2>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <input type="text" name="searchtype" id="searchtype" class="form-control col-md-3" style="float:right;" placeholder="Search Here" />
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Photo)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ContactNo)
+                        </th>
+                        <th>
+                            Identity Number
+                        </th>
+
+
+                        <th>
+                            Gender
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserTable.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody id="searchvalue">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @{ if (!string.IsNullOrEmpty(item.Photo))
+                                    {
+                                        <img src="@Url.Content(item.Photo)" alt="Image" style="width:50px;height:50px;max-width:100%; height:auto;" />
+                                    }
+
+                                }
+                                
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GenderTable.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserTable.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                        </tr>
+
+
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchtype").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#searchvalue tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

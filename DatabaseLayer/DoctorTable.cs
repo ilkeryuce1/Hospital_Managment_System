@@ -19,7 +19,7 @@ namespace DatabaseLayer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DoctorTable()
-        {
+        { 
             this.DoctorAppointTables = new HashSet<DoctorAppointTable>();
             this.DoctorTimeSlotTables = new HashSet<DoctorTimeSlotTable>();
         }
@@ -53,6 +53,9 @@ namespace DatabaseLayer
         public int AccountTypeID { get; set; }
         public string AccountNo { get; set; }
         public int GenderID { get; set; }
+
+
+
         [NotMapped]
         public HttpPostedFileBase LogFile { get; set; }
     
