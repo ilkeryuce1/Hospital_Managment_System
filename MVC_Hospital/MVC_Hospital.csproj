@@ -147,6 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\adddoctorcss.css" />
     <Content Include="Content\bootstrap-theme - Copy.css" />
     <Content Include="Content\a.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
