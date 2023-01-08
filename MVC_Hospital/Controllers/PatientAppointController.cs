@@ -11,7 +11,7 @@ namespace MVC_Hospital.Controllers
         // GET: PatientAppoint
         public ActionResult GetAllDoctors()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -20,7 +20,7 @@ namespace MVC_Hospital.Controllers
         }
         public ActionResult GetAllLabs()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -29,7 +29,7 @@ namespace MVC_Hospital.Controllers
         }
         public ActionResult GetAllPatients()
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -40,7 +40,7 @@ namespace MVC_Hospital.Controllers
 
         public ActionResult DoctorAppointment(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -54,7 +54,7 @@ namespace MVC_Hospital.Controllers
         [HttpPost]
         public ActionResult LabAppointment(LabAppointTable appointment)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -96,7 +96,7 @@ namespace MVC_Hospital.Controllers
         [HttpPost]
         public ActionResult DoctorAppointment(DoctorAppointTable appointment)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -145,7 +145,7 @@ namespace MVC_Hospital.Controllers
 
         public ActionResult DoctorProfile(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -156,7 +156,7 @@ namespace MVC_Hospital.Controllers
         
         public ActionResult LabTests(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -169,7 +169,7 @@ namespace MVC_Hospital.Controllers
         }
         public ActionResult LabAppointment(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["accesstolog"])))
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
