@@ -4,6 +4,7 @@
 ![image](https://user-images.githubusercontent.com/109898238/213644312-73e72531-6a26-4161-a710-6ae72f455598.png)
 ![image](https://user-images.githubusercontent.com/109898238/213644329-2f6be43d-6ff2-40f3-838c-2c781e725315.png)
 ![image](https://user-images.githubusercontent.com/109898238/213644347-08a5fba9-e2c6-418f-aa65-e37375e21c55.png)
+<br/>
 [Doktor Panel]
 ![image](https://user-images.githubusercontent.com/109898238/213644616-891c56ae-2c78-4afe-8d3b-308c8acef13e.png)
 ![image](https://user-images.githubusercontent.com/109898238/213644728-715f0443-e52a-47a1-94a4-270967491083.png)
